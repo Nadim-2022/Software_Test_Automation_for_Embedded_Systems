@@ -1,0 +1,1348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.9.13 on win32)" generated="2024-11-21T09:30:56.784302" rpa="false" schemaversion="5">
+<suite id="s1" name="Lab8B" source="D:\Software_Test_Automation_for_Embedded_Systems\Exercise_7\lab8b.robot">
+<test id="s1-t1" name="Lab 8 Part 2: Remove Skodas" line="14">
+<kw name="Start Container">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-11-21T09:30:57.163278" level="INFO">Starting container</msg>
+<arg>Starting container</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-11-21T09:30:57.163278" elapsed="0.000000"/>
+</kw>
+<kw name="Run Process" owner="Process">
+<msg time="2024-11-21T09:30:57.163278" level="INFO">Starting process:
+docker-compose up --detach</msg>
+<msg time="2024-11-21T09:30:57.163278" level="INFO">Waiting for process to complete.</msg>
+<msg time="2024-11-21T09:30:58.325933" level="INFO">Process completed.</msg>
+<arg>docker-compose</arg>
+<arg>up</arg>
+<arg>--detach</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<status status="PASS" start="2024-11-21T09:30:57.163278" elapsed="1.162720"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-11-21T09:31:03.329183" level="INFO">Slept 5 seconds.</msg>
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-11-21T09:30:58.326601" elapsed="5.002582"/>
+</kw>
+<status status="PASS" start="2024-11-21T09:30:57.163278" elapsed="6.165905"/>
+</kw>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:03.361452" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-11-21T09:31:03.361452" elapsed="1.625791"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-11-21T09:31:04.987243" elapsed="0.049766"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:05.043278" level="INFO">Page title is 'Car store'.</msg>
+<arg>Car store</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2024-11-21T09:31:05.037731" elapsed="0.005547"/>
+</kw>
+<kw name="Add Cars With Specific Makes">
+<for flavor="IN RANGE">
+<iter>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:05.049531" level="INFO">${make} = Toyota</msg>
+<var>${make}</var>
+<arg>random.choice(["Toyota", "Skoda", "Audi"])</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:05.049531" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:05.049531" level="INFO">${model} = A4</msg>
+<var>${model}</var>
+<arg>random.choice(${CAR_MODELS})</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:05.049531" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:05.049531" level="INFO">${mileage} = 26767</msg>
+<var>${mileage}</var>
+<arg>random.randint(1000, 30000)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:05.049531" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:05.049531" level="INFO">${year} = 2016</msg>
+<var>${year}</var>
+<arg>random.randint(2015, 2022)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:05.049531" elapsed="0.000000"/>
+</kw>
+<kw name="Generate Plate Number">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:05.049531" level="INFO">${plate} = RQB-654</msg>
+<var>${plate}</var>
+<arg>''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ', k=3)) + '-' + ''.join(random.choices('0123456789', k=3))</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:05.049531" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${plate}</value>
+<status status="PASS" start="2024-11-21T09:31:05.049531" elapsed="0.000000"/>
+</return>
+<msg time="2024-11-21T09:31:05.049531" level="INFO">${plate} = RQB-654</msg>
+<var>${plate}</var>
+<status status="PASS" start="2024-11-21T09:31:05.049531" elapsed="0.000000"/>
+</kw>
+<kw name="Add Single Car">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:05.049531" level="INFO">Clicking element 'xpath://a[@href='/add']'.</msg>
+<arg>xpath://a[@href='/add']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:05.049531" elapsed="0.178411"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:05.240388" level="INFO">Page title is 'Add a new car'.</msg>
+<arg>Add a new car</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2024-11-21T09:31:05.229246" elapsed="0.011142"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:05.242402" level="INFO">Typing text 'Toyota' into text field 'id:make-input'.</msg>
+<arg>id:make-input</arg>
+<arg>${make}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:05.242402" elapsed="0.145784"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:05.389271" level="INFO">Typing text 'A4' into text field 'id:model-input'.</msg>
+<arg>id:model-input</arg>
+<arg>${model}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:05.388186" elapsed="0.112684"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:05.500870" level="INFO">Typing text '26767' into text field 'id:mileage-input'.</msg>
+<arg>id:mileage-input</arg>
+<arg>${mileage}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:05.500870" elapsed="0.105501"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:05.606371" level="INFO">Typing text '2016' into text field 'id:year-input'.</msg>
+<arg>id:year-input</arg>
+<arg>${year}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:05.606371" elapsed="0.124613"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:05.730984" level="INFO">Typing text 'RQB-654' into text field 'id:plate-input'.</msg>
+<arg>id:plate-input</arg>
+<arg>${plate}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:05.730984" elapsed="0.087043"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:05.818027" level="INFO">Clicking element 'xpath=//input[@value='Add a new car']'.</msg>
+<arg>xpath=//input[@value='Add a new car']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:05.818027" elapsed="0.067126"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//div[@id='car-container']</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2024-11-21T09:31:05.885153" elapsed="0.229086"/>
+</kw>
+<arg>${make}</arg>
+<arg>${model}</arg>
+<arg>${mileage}</arg>
+<arg>${year}</arg>
+<arg>${plate}</arg>
+<status status="PASS" start="2024-11-21T09:31:05.049531" elapsed="1.064708"/>
+</kw>
+<var name="${i}">0</var>
+<status status="PASS" start="2024-11-21T09:31:05.043278" elapsed="1.070961"/>
+</iter>
+<iter>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:06.121578" level="INFO">${make} = Toyota</msg>
+<var>${make}</var>
+<arg>random.choice(["Toyota", "Skoda", "Audi"])</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.121284" elapsed="0.000656"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:06.122383" level="INFO">${model} = A6</msg>
+<var>${model}</var>
+<arg>random.choice(${CAR_MODELS})</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.121992" elapsed="0.000391"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:06.122383" level="INFO">${mileage} = 3927</msg>
+<var>${mileage}</var>
+<arg>random.randint(1000, 30000)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.122383" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:06.122383" level="INFO">${year} = 2016</msg>
+<var>${year}</var>
+<arg>random.randint(2015, 2022)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.122383" elapsed="0.000000"/>
+</kw>
+<kw name="Generate Plate Number">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:06.122383" level="INFO">${plate} = XWW-136</msg>
+<var>${plate}</var>
+<arg>''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ', k=3)) + '-' + ''.join(random.choices('0123456789', k=3))</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.122383" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${plate}</value>
+<status status="PASS" start="2024-11-21T09:31:06.122383" elapsed="0.000000"/>
+</return>
+<msg time="2024-11-21T09:31:06.122383" level="INFO">${plate} = XWW-136</msg>
+<var>${plate}</var>
+<status status="PASS" start="2024-11-21T09:31:06.122383" elapsed="0.000000"/>
+</kw>
+<kw name="Add Single Car">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:06.122383" level="INFO">Clicking element 'xpath://a[@href='/add']'.</msg>
+<arg>xpath://a[@href='/add']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.122383" elapsed="0.122158"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:06.255105" level="INFO">Page title is 'Add a new car'.</msg>
+<arg>Add a new car</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.244541" elapsed="0.010564"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:06.255105" level="INFO">Typing text 'Toyota' into text field 'id:make-input'.</msg>
+<arg>id:make-input</arg>
+<arg>${make}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.255105" elapsed="0.097095"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:06.352200" level="INFO">Typing text 'A6' into text field 'id:model-input'.</msg>
+<arg>id:model-input</arg>
+<arg>${model}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.352200" elapsed="0.081840"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:06.434040" level="INFO">Typing text '3927' into text field 'id:mileage-input'.</msg>
+<arg>id:mileage-input</arg>
+<arg>${mileage}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.434040" elapsed="0.070953"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:06.504993" level="INFO">Typing text '2016' into text field 'id:year-input'.</msg>
+<arg>id:year-input</arg>
+<arg>${year}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.504993" elapsed="0.074505"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:06.579498" level="INFO">Typing text 'XWW-136' into text field 'id:plate-input'.</msg>
+<arg>id:plate-input</arg>
+<arg>${plate}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.579498" elapsed="0.075344"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:06.654842" level="INFO">Clicking element 'xpath=//input[@value='Add a new car']'.</msg>
+<arg>xpath=//input[@value='Add a new car']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.654842" elapsed="0.058477"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//div[@id='car-container']</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.713319" elapsed="0.043770"/>
+</kw>
+<arg>${make}</arg>
+<arg>${model}</arg>
+<arg>${mileage}</arg>
+<arg>${year}</arg>
+<arg>${plate}</arg>
+<status status="PASS" start="2024-11-21T09:31:06.122383" elapsed="0.634706"/>
+</kw>
+<var name="${i}">1</var>
+<status status="PASS" start="2024-11-21T09:31:06.114239" elapsed="0.642850"/>
+</iter>
+<iter>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:06.757089" level="INFO">${make} = Skoda</msg>
+<var>${make}</var>
+<arg>random.choice(["Toyota", "Skoda", "Audi"])</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.757089" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:06.757089" level="INFO">${model} = Fabia</msg>
+<var>${model}</var>
+<arg>random.choice(${CAR_MODELS})</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.757089" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:06.757089" level="INFO">${mileage} = 24102</msg>
+<var>${mileage}</var>
+<arg>random.randint(1000, 30000)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.757089" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:06.757089" level="INFO">${year} = 2021</msg>
+<var>${year}</var>
+<arg>random.randint(2015, 2022)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.757089" elapsed="0.000000"/>
+</kw>
+<kw name="Generate Plate Number">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:06.757089" level="INFO">${plate} = MGV-556</msg>
+<var>${plate}</var>
+<arg>''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ', k=3)) + '-' + ''.join(random.choices('0123456789', k=3))</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.757089" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${plate}</value>
+<status status="PASS" start="2024-11-21T09:31:06.757089" elapsed="0.000000"/>
+</return>
+<msg time="2024-11-21T09:31:06.757089" level="INFO">${plate} = MGV-556</msg>
+<var>${plate}</var>
+<status status="PASS" start="2024-11-21T09:31:06.757089" elapsed="0.000000"/>
+</kw>
+<kw name="Add Single Car">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:06.757089" level="INFO">Clicking element 'xpath://a[@href='/add']'.</msg>
+<arg>xpath://a[@href='/add']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.757089" elapsed="0.098313"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:06.864459" level="INFO">Page title is 'Add a new car'.</msg>
+<arg>Add a new car</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.855402" elapsed="0.009057"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:06.864459" level="INFO">Typing text 'Skoda' into text field 'id:make-input'.</msg>
+<arg>id:make-input</arg>
+<arg>${make}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.864459" elapsed="0.072745"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:06.937204" level="INFO">Typing text 'Fabia' into text field 'id:model-input'.</msg>
+<arg>id:model-input</arg>
+<arg>${model}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:06.937204" elapsed="0.074917"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:07.012121" level="INFO">Typing text '24102' into text field 'id:mileage-input'.</msg>
+<arg>id:mileage-input</arg>
+<arg>${mileage}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:07.012121" elapsed="0.066596"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:07.078717" level="INFO">Typing text '2021' into text field 'id:year-input'.</msg>
+<arg>id:year-input</arg>
+<arg>${year}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:07.078717" elapsed="0.075359"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:07.154076" level="INFO">Typing text 'MGV-556' into text field 'id:plate-input'.</msg>
+<arg>id:plate-input</arg>
+<arg>${plate}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:07.154076" elapsed="0.082605"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:07.236681" level="INFO">Clicking element 'xpath=//input[@value='Add a new car']'.</msg>
+<arg>xpath=//input[@value='Add a new car']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:07.236681" elapsed="0.058269"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//div[@id='car-container']</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2024-11-21T09:31:07.295460" elapsed="0.249853"/>
+</kw>
+<arg>${make}</arg>
+<arg>${model}</arg>
+<arg>${mileage}</arg>
+<arg>${year}</arg>
+<arg>${plate}</arg>
+<status status="PASS" start="2024-11-21T09:31:06.757089" elapsed="0.788224"/>
+</kw>
+<var name="${i}">2</var>
+<status status="PASS" start="2024-11-21T09:31:06.757089" elapsed="0.788224"/>
+</iter>
+<iter>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:07.545313" level="INFO">${make} = Audi</msg>
+<var>${make}</var>
+<arg>random.choice(["Toyota", "Skoda", "Audi"])</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:07.545313" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:07.545313" level="INFO">${model} = Yaris</msg>
+<var>${model}</var>
+<arg>random.choice(${CAR_MODELS})</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:07.545313" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:07.545313" level="INFO">${mileage} = 8042</msg>
+<var>${mileage}</var>
+<arg>random.randint(1000, 30000)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:07.545313" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:07.553229" level="INFO">${year} = 2018</msg>
+<var>${year}</var>
+<arg>random.randint(2015, 2022)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:07.553129" elapsed="0.000100"/>
+</kw>
+<kw name="Generate Plate Number">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:07.553229" level="INFO">${plate} = DBW-860</msg>
+<var>${plate}</var>
+<arg>''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ', k=3)) + '-' + ''.join(random.choices('0123456789', k=3))</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:07.553229" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${plate}</value>
+<status status="PASS" start="2024-11-21T09:31:07.553229" elapsed="0.000000"/>
+</return>
+<msg time="2024-11-21T09:31:07.553229" level="INFO">${plate} = DBW-860</msg>
+<var>${plate}</var>
+<status status="PASS" start="2024-11-21T09:31:07.553229" elapsed="0.000000"/>
+</kw>
+<kw name="Add Single Car">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:07.553229" level="INFO">Clicking element 'xpath://a[@href='/add']'.</msg>
+<arg>xpath://a[@href='/add']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:07.553229" elapsed="0.086049"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:07.645356" level="INFO">Page title is 'Add a new car'.</msg>
+<arg>Add a new car</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2024-11-21T09:31:07.639278" elapsed="0.006078"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:07.645356" level="INFO">Typing text 'Audi' into text field 'id:make-input'.</msg>
+<arg>id:make-input</arg>
+<arg>${make}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:07.645356" elapsed="0.071171"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:07.716527" level="INFO">Typing text 'Yaris' into text field 'id:model-input'.</msg>
+<arg>id:model-input</arg>
+<arg>${model}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:07.716527" elapsed="0.076841"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:07.794195" level="INFO">Typing text '8042' into text field 'id:mileage-input'.</msg>
+<arg>id:mileage-input</arg>
+<arg>${mileage}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:07.794079" elapsed="0.066518"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:07.860597" level="INFO">Typing text '2018' into text field 'id:year-input'.</msg>
+<arg>id:year-input</arg>
+<arg>${year}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:07.860597" elapsed="0.066546"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:07.927143" level="INFO">Typing text 'DBW-860' into text field 'id:plate-input'.</msg>
+<arg>id:plate-input</arg>
+<arg>${plate}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:07.927143" elapsed="0.076167"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:08.003310" level="INFO">Clicking element 'xpath=//input[@value='Add a new car']'.</msg>
+<arg>xpath=//input[@value='Add a new car']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.003310" elapsed="0.059898"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//div[@id='car-container']</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.063208" elapsed="0.037369"/>
+</kw>
+<arg>${make}</arg>
+<arg>${model}</arg>
+<arg>${mileage}</arg>
+<arg>${year}</arg>
+<arg>${plate}</arg>
+<status status="PASS" start="2024-11-21T09:31:07.553229" elapsed="0.547348"/>
+</kw>
+<var name="${i}">3</var>
+<status status="PASS" start="2024-11-21T09:31:07.545313" elapsed="0.555264"/>
+</iter>
+<iter>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:08.100577" level="INFO">${make} = Skoda</msg>
+<var>${make}</var>
+<arg>random.choice(["Toyota", "Skoda", "Audi"])</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.100577" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:08.100577" level="INFO">${model} = Land Cruiser</msg>
+<var>${model}</var>
+<arg>random.choice(${CAR_MODELS})</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.100577" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:08.100577" level="INFO">${mileage} = 18349</msg>
+<var>${mileage}</var>
+<arg>random.randint(1000, 30000)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.100577" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:08.100577" level="INFO">${year} = 2017</msg>
+<var>${year}</var>
+<arg>random.randint(2015, 2022)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.100577" elapsed="0.000000"/>
+</kw>
+<kw name="Generate Plate Number">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:08.100577" level="INFO">${plate} = ZWT-130</msg>
+<var>${plate}</var>
+<arg>''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ', k=3)) + '-' + ''.join(random.choices('0123456789', k=3))</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.100577" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${plate}</value>
+<status status="PASS" start="2024-11-21T09:31:08.100577" elapsed="0.000000"/>
+</return>
+<msg time="2024-11-21T09:31:08.100577" level="INFO">${plate} = ZWT-130</msg>
+<var>${plate}</var>
+<status status="PASS" start="2024-11-21T09:31:08.100577" elapsed="0.000000"/>
+</kw>
+<kw name="Add Single Car">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:08.100577" level="INFO">Clicking element 'xpath://a[@href='/add']'.</msg>
+<arg>xpath://a[@href='/add']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.100577" elapsed="0.091114"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:08.198764" level="INFO">Page title is 'Add a new car'.</msg>
+<arg>Add a new car</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.191691" elapsed="0.007073"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:08.198764" level="INFO">Typing text 'Skoda' into text field 'id:make-input'.</msg>
+<arg>id:make-input</arg>
+<arg>${make}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.198764" elapsed="0.077935"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:08.276699" level="INFO">Typing text 'Land Cruiser' into text field 'id:model-input'.</msg>
+<arg>id:model-input</arg>
+<arg>${model}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.276699" elapsed="0.093744"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:08.370443" level="INFO">Typing text '18349' into text field 'id:mileage-input'.</msg>
+<arg>id:mileage-input</arg>
+<arg>${mileage}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.370443" elapsed="0.093159"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:08.464698" level="INFO">Typing text '2017' into text field 'id:year-input'.</msg>
+<arg>id:year-input</arg>
+<arg>${year}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.464151" elapsed="0.111952"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:08.576103" level="INFO">Typing text 'ZWT-130' into text field 'id:plate-input'.</msg>
+<arg>id:plate-input</arg>
+<arg>${plate}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.576103" elapsed="0.093073"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:08.669703" level="INFO">Clicking element 'xpath=//input[@value='Add a new car']'.</msg>
+<arg>xpath=//input[@value='Add a new car']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.669703" elapsed="0.055491"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//div[@id='car-container']</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.725778" elapsed="0.032824"/>
+</kw>
+<arg>${make}</arg>
+<arg>${model}</arg>
+<arg>${mileage}</arg>
+<arg>${year}</arg>
+<arg>${plate}</arg>
+<status status="PASS" start="2024-11-21T09:31:08.100577" elapsed="0.658025"/>
+</kw>
+<var name="${i}">4</var>
+<status status="PASS" start="2024-11-21T09:31:08.100577" elapsed="0.658025"/>
+</iter>
+<iter>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:08.758602" level="INFO">${make} = Audi</msg>
+<var>${make}</var>
+<arg>random.choice(["Toyota", "Skoda", "Audi"])</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.758602" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:08.758602" level="INFO">${model} = Octavia</msg>
+<var>${model}</var>
+<arg>random.choice(${CAR_MODELS})</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.758602" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:08.758602" level="INFO">${mileage} = 20164</msg>
+<var>${mileage}</var>
+<arg>random.randint(1000, 30000)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.758602" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:08.758602" level="INFO">${year} = 2016</msg>
+<var>${year}</var>
+<arg>random.randint(2015, 2022)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.758602" elapsed="0.000000"/>
+</kw>
+<kw name="Generate Plate Number">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:08.758602" level="INFO">${plate} = CIV-381</msg>
+<var>${plate}</var>
+<arg>''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ', k=3)) + '-' + ''.join(random.choices('0123456789', k=3))</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.758602" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${plate}</value>
+<status status="PASS" start="2024-11-21T09:31:08.758602" elapsed="0.000000"/>
+</return>
+<msg time="2024-11-21T09:31:08.758602" level="INFO">${plate} = CIV-381</msg>
+<var>${plate}</var>
+<status status="PASS" start="2024-11-21T09:31:08.758602" elapsed="0.000000"/>
+</kw>
+<kw name="Add Single Car">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:08.758602" level="INFO">Clicking element 'xpath://a[@href='/add']'.</msg>
+<arg>xpath://a[@href='/add']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.758602" elapsed="0.094687"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:08.853289" level="INFO">Page title is 'Add a new car'.</msg>
+<arg>Add a new car</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.853289" elapsed="0.000000"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:08.853289" level="INFO">Typing text 'Audi' into text field 'id:make-input'.</msg>
+<arg>id:make-input</arg>
+<arg>${make}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:08.853289" elapsed="0.159996"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:09.013285" level="INFO">Typing text 'Octavia' into text field 'id:model-input'.</msg>
+<arg>id:model-input</arg>
+<arg>${model}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:09.013285" elapsed="0.099374"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:09.112659" level="INFO">Typing text '20164' into text field 'id:mileage-input'.</msg>
+<arg>id:mileage-input</arg>
+<arg>${mileage}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:09.112659" elapsed="0.074288"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:09.190458" level="INFO">Typing text '2016' into text field 'id:year-input'.</msg>
+<arg>id:year-input</arg>
+<arg>${year}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:09.186947" elapsed="0.072540"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:09.259487" level="INFO">Typing text 'CIV-381' into text field 'id:plate-input'.</msg>
+<arg>id:plate-input</arg>
+<arg>${plate}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:09.259487" elapsed="0.082071"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:09.341558" level="INFO">Clicking element 'xpath=//input[@value='Add a new car']'.</msg>
+<arg>xpath=//input[@value='Add a new car']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:09.341558" elapsed="0.054915"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//div[@id='car-container']</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2024-11-21T09:31:09.396473" elapsed="0.252756"/>
+</kw>
+<arg>${make}</arg>
+<arg>${model}</arg>
+<arg>${mileage}</arg>
+<arg>${year}</arg>
+<arg>${plate}</arg>
+<status status="PASS" start="2024-11-21T09:31:08.758602" elapsed="0.891262"/>
+</kw>
+<var name="${i}">5</var>
+<status status="PASS" start="2024-11-21T09:31:08.758602" elapsed="0.891262"/>
+</iter>
+<iter>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:09.649864" level="INFO">${make} = Toyota</msg>
+<var>${make}</var>
+<arg>random.choice(["Toyota", "Skoda", "Audi"])</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:09.649864" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:09.649864" level="INFO">${model} = A3</msg>
+<var>${model}</var>
+<arg>random.choice(${CAR_MODELS})</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:09.649864" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:09.649864" level="INFO">${mileage} = 12203</msg>
+<var>${mileage}</var>
+<arg>random.randint(1000, 30000)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:09.649864" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:09.649864" level="INFO">${year} = 2017</msg>
+<var>${year}</var>
+<arg>random.randint(2015, 2022)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:09.649864" elapsed="0.000000"/>
+</kw>
+<kw name="Generate Plate Number">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:09.649864" level="INFO">${plate} = EPX-020</msg>
+<var>${plate}</var>
+<arg>''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ', k=3)) + '-' + ''.join(random.choices('0123456789', k=3))</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:09.649864" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${plate}</value>
+<status status="PASS" start="2024-11-21T09:31:09.649864" elapsed="0.000000"/>
+</return>
+<msg time="2024-11-21T09:31:09.649864" level="INFO">${plate} = EPX-020</msg>
+<var>${plate}</var>
+<status status="PASS" start="2024-11-21T09:31:09.649864" elapsed="0.000000"/>
+</kw>
+<kw name="Add Single Car">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:09.649864" level="INFO">Clicking element 'xpath://a[@href='/add']'.</msg>
+<arg>xpath://a[@href='/add']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:09.649864" elapsed="0.087456"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:09.738332" level="INFO">Page title is 'Add a new car'.</msg>
+<arg>Add a new car</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2024-11-21T09:31:09.737320" elapsed="0.001012"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:09.738332" level="INFO">Typing text 'Toyota' into text field 'id:make-input'.</msg>
+<arg>id:make-input</arg>
+<arg>${make}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:09.738332" elapsed="0.090238"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:09.828570" level="INFO">Typing text 'A3' into text field 'id:model-input'.</msg>
+<arg>id:model-input</arg>
+<arg>${model}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:09.828570" elapsed="0.073142"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:09.901712" level="INFO">Typing text '12203' into text field 'id:mileage-input'.</msg>
+<arg>id:mileage-input</arg>
+<arg>${mileage}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:09.901712" elapsed="0.073611"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:09.975323" level="INFO">Typing text '2017' into text field 'id:year-input'.</msg>
+<arg>id:year-input</arg>
+<arg>${year}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:09.975323" elapsed="0.074002"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:10.049325" level="INFO">Typing text 'EPX-020' into text field 'id:plate-input'.</msg>
+<arg>id:plate-input</arg>
+<arg>${plate}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.049325" elapsed="0.086117"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:10.135442" level="INFO">Clicking element 'xpath=//input[@value='Add a new car']'.</msg>
+<arg>xpath=//input[@value='Add a new car']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.135442" elapsed="0.054514"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//div[@id='car-container']</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.190467" elapsed="0.041444"/>
+</kw>
+<arg>${make}</arg>
+<arg>${model}</arg>
+<arg>${mileage}</arg>
+<arg>${year}</arg>
+<arg>${plate}</arg>
+<status status="PASS" start="2024-11-21T09:31:09.649864" elapsed="0.582047"/>
+</kw>
+<var name="${i}">6</var>
+<status status="PASS" start="2024-11-21T09:31:09.649864" elapsed="0.582047"/>
+</iter>
+<iter>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:10.231911" level="INFO">${make} = Toyota</msg>
+<var>${make}</var>
+<arg>random.choice(["Toyota", "Skoda", "Audi"])</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.231911" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:10.231911" level="INFO">${model} = Land Cruiser</msg>
+<var>${model}</var>
+<arg>random.choice(${CAR_MODELS})</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.231911" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:10.231911" level="INFO">${mileage} = 14620</msg>
+<var>${mileage}</var>
+<arg>random.randint(1000, 30000)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.231911" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:10.231911" level="INFO">${year} = 2020</msg>
+<var>${year}</var>
+<arg>random.randint(2015, 2022)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.231911" elapsed="0.000000"/>
+</kw>
+<kw name="Generate Plate Number">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:10.231911" level="INFO">${plate} = YNK-407</msg>
+<var>${plate}</var>
+<arg>''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ', k=3)) + '-' + ''.join(random.choices('0123456789', k=3))</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.231911" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${plate}</value>
+<status status="PASS" start="2024-11-21T09:31:10.231911" elapsed="0.000000"/>
+</return>
+<msg time="2024-11-21T09:31:10.231911" level="INFO">${plate} = YNK-407</msg>
+<var>${plate}</var>
+<status status="PASS" start="2024-11-21T09:31:10.231911" elapsed="0.000000"/>
+</kw>
+<kw name="Add Single Car">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:10.231911" level="INFO">Clicking element 'xpath://a[@href='/add']'.</msg>
+<arg>xpath://a[@href='/add']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.231911" elapsed="0.085479"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:10.321547" level="INFO">Page title is 'Add a new car'.</msg>
+<arg>Add a new car</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.317390" elapsed="0.004157"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:10.321547" level="INFO">Typing text 'Toyota' into text field 'id:make-input'.</msg>
+<arg>id:make-input</arg>
+<arg>${make}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.321547" elapsed="0.080812"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:10.402359" level="INFO">Typing text 'Land Cruiser' into text field 'id:model-input'.</msg>
+<arg>id:model-input</arg>
+<arg>${model}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.402359" elapsed="0.098207"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:10.500566" level="INFO">Typing text '14620' into text field 'id:mileage-input'.</msg>
+<arg>id:mileage-input</arg>
+<arg>${mileage}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.500566" elapsed="0.078752"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:10.580888" level="INFO">Typing text '2020' into text field 'id:year-input'.</msg>
+<arg>id:year-input</arg>
+<arg>${year}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.579318" elapsed="0.084464"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:10.663782" level="INFO">Typing text 'YNK-407' into text field 'id:plate-input'.</msg>
+<arg>id:plate-input</arg>
+<arg>${plate}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.663782" elapsed="0.076212"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:10.739994" level="INFO">Clicking element 'xpath=//input[@value='Add a new car']'.</msg>
+<arg>xpath=//input[@value='Add a new car']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.739994" elapsed="0.060495"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//div[@id='car-container']</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.800489" elapsed="0.034880"/>
+</kw>
+<arg>${make}</arg>
+<arg>${model}</arg>
+<arg>${mileage}</arg>
+<arg>${year}</arg>
+<arg>${plate}</arg>
+<status status="PASS" start="2024-11-21T09:31:10.231911" elapsed="0.603458"/>
+</kw>
+<var name="${i}">7</var>
+<status status="PASS" start="2024-11-21T09:31:10.231911" elapsed="0.603458"/>
+</iter>
+<iter>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:10.841391" level="INFO">${make} = Audi</msg>
+<var>${make}</var>
+<arg>random.choice(["Toyota", "Skoda", "Audi"])</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.835369" elapsed="0.006022"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:10.841391" level="INFO">${model} = Superb</msg>
+<var>${model}</var>
+<arg>random.choice(${CAR_MODELS})</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.841391" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:10.841391" level="INFO">${mileage} = 10451</msg>
+<var>${mileage}</var>
+<arg>random.randint(1000, 30000)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.841391" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:10.841391" level="INFO">${year} = 2020</msg>
+<var>${year}</var>
+<arg>random.randint(2015, 2022)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.841391" elapsed="0.000000"/>
+</kw>
+<kw name="Generate Plate Number">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:10.841391" level="INFO">${plate} = ITK-484</msg>
+<var>${plate}</var>
+<arg>''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ', k=3)) + '-' + ''.join(random.choices('0123456789', k=3))</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.841391" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${plate}</value>
+<status status="PASS" start="2024-11-21T09:31:10.841391" elapsed="0.000000"/>
+</return>
+<msg time="2024-11-21T09:31:10.841391" level="INFO">${plate} = ITK-484</msg>
+<var>${plate}</var>
+<status status="PASS" start="2024-11-21T09:31:10.841391" elapsed="0.000000"/>
+</kw>
+<kw name="Add Single Car">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:10.841391" level="INFO">Clicking element 'xpath://a[@href='/add']'.</msg>
+<arg>xpath://a[@href='/add']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.841391" elapsed="0.084284"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:10.929192" level="INFO">Page title is 'Add a new car'.</msg>
+<arg>Add a new car</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.925675" elapsed="0.003517"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:10.929192" level="INFO">Typing text 'Audi' into text field 'id:make-input'.</msg>
+<arg>id:make-input</arg>
+<arg>${make}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:10.929192" elapsed="0.078835"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:11.008027" level="INFO">Typing text 'Superb' into text field 'id:model-input'.</msg>
+<arg>id:model-input</arg>
+<arg>${model}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:11.008027" elapsed="0.082680"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:11.090707" level="INFO">Typing text '10451' into text field 'id:mileage-input'.</msg>
+<arg>id:mileage-input</arg>
+<arg>${mileage}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:11.090707" elapsed="0.082659"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:11.173366" level="INFO">Typing text '2020' into text field 'id:year-input'.</msg>
+<arg>id:year-input</arg>
+<arg>${year}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:11.173366" elapsed="0.082341"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:11.255707" level="INFO">Typing text 'ITK-484' into text field 'id:plate-input'.</msg>
+<arg>id:plate-input</arg>
+<arg>${plate}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:11.255707" elapsed="0.082583"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:11.338290" level="INFO">Clicking element 'xpath=//input[@value='Add a new car']'.</msg>
+<arg>xpath=//input[@value='Add a new car']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:11.338290" elapsed="0.062597"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//div[@id='car-container']</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2024-11-21T09:31:11.400887" elapsed="0.237691"/>
+</kw>
+<arg>${make}</arg>
+<arg>${model}</arg>
+<arg>${mileage}</arg>
+<arg>${year}</arg>
+<arg>${plate}</arg>
+<status status="PASS" start="2024-11-21T09:31:10.841391" elapsed="0.797187"/>
+</kw>
+<var name="${i}">8</var>
+<status status="PASS" start="2024-11-21T09:31:10.835369" elapsed="0.803209"/>
+</iter>
+<iter>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:11.646092" level="INFO">${make} = Audi</msg>
+<var>${make}</var>
+<arg>random.choice(["Toyota", "Skoda", "Audi"])</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:11.646092" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:11.646092" level="INFO">${model} = A4</msg>
+<var>${model}</var>
+<arg>random.choice(${CAR_MODELS})</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:11.646092" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:11.646092" level="INFO">${mileage} = 10527</msg>
+<var>${mileage}</var>
+<arg>random.randint(1000, 30000)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:11.646092" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:11.646092" level="INFO">${year} = 2015</msg>
+<var>${year}</var>
+<arg>random.randint(2015, 2022)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:11.646092" elapsed="0.000000"/>
+</kw>
+<kw name="Generate Plate Number">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-21T09:31:11.646092" level="INFO">${plate} = CQJ-848</msg>
+<var>${plate}</var>
+<arg>''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ', k=3)) + '-' + ''.join(random.choices('0123456789', k=3))</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-21T09:31:11.646092" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${plate}</value>
+<status status="PASS" start="2024-11-21T09:31:11.646092" elapsed="0.000000"/>
+</return>
+<msg time="2024-11-21T09:31:11.648106" level="INFO">${plate} = CQJ-848</msg>
+<var>${plate}</var>
+<status status="PASS" start="2024-11-21T09:31:11.646092" elapsed="0.002014"/>
+</kw>
+<kw name="Add Single Car">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:11.648106" level="INFO">Clicking element 'xpath://a[@href='/add']'.</msg>
+<arg>xpath://a[@href='/add']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:11.648106" elapsed="0.094079"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:11.746360" level="INFO">Page title is 'Add a new car'.</msg>
+<arg>Add a new car</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2024-11-21T09:31:11.742185" elapsed="0.004175"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:11.748399" level="INFO">Typing text 'Audi' into text field 'id:make-input'.</msg>
+<arg>id:make-input</arg>
+<arg>${make}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:11.748399" elapsed="0.077795"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:11.826659" level="INFO">Typing text 'A4' into text field 'id:model-input'.</msg>
+<arg>id:model-input</arg>
+<arg>${model}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:11.826659" elapsed="0.077519"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:11.905089" level="INFO">Typing text '10527' into text field 'id:mileage-input'.</msg>
+<arg>id:mileage-input</arg>
+<arg>${mileage}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:11.904691" elapsed="0.077273"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:11.981964" level="INFO">Typing text '2015' into text field 'id:year-input'.</msg>
+<arg>id:year-input</arg>
+<arg>${year}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:11.981964" elapsed="0.072955"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:12.054919" level="INFO">Typing text 'CQJ-848' into text field 'id:plate-input'.</msg>
+<arg>id:plate-input</arg>
+<arg>${plate}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:12.054919" elapsed="0.081592"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:12.136511" level="INFO">Clicking element 'xpath=//input[@value='Add a new car']'.</msg>
+<arg>xpath=//input[@value='Add a new car']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:12.136511" elapsed="0.059406"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//div[@id='car-container']</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2024-11-21T09:31:12.195917" elapsed="0.040677"/>
+</kw>
+<arg>${make}</arg>
+<arg>${model}</arg>
+<arg>${mileage}</arg>
+<arg>${year}</arg>
+<arg>${plate}</arg>
+<status status="PASS" start="2024-11-21T09:31:11.648106" elapsed="0.588488"/>
+</kw>
+<var name="${i}">9</var>
+<status status="PASS" start="2024-11-21T09:31:11.645695" elapsed="0.590899"/>
+</iter>
+<var>${i}</var>
+<value>${count}</value>
+<status status="PASS" start="2024-11-21T09:31:05.043278" elapsed="7.193316"/>
+</for>
+<arg>10</arg>
+<status status="PASS" start="2024-11-21T09:31:05.043278" elapsed="7.193316"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:12.327211" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="car_store_after_add_skodas.png"&gt;&lt;img src="car_store_after_add_skodas.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>car_store_after_add_skodas.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2024-11-21T09:31:12.236594" elapsed="0.090617"/>
+</kw>
+<kw name="Remove All Cars By Make">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-11-21T09:31:12.327211" level="INFO">${car_locator} = xpath=//*[@id="car-container"]//span[text()='Skoda']</msg>
+<var>${car_locator}</var>
+<arg>xpath=//*[@id="car-container"]//span[text()='${make}']</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-11-21T09:31:12.327211" elapsed="0.000000"/>
+</kw>
+<kw name="Get WebElements" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:12.344921" level="INFO">${car_list} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="0ce0957b2c36bc3eb9f98fd60acf3d11", element="f.CF0C1647235F26754F6B651E7A5FC1E1.d.7973C570B0409A8C483B97D196030AEC.e.218")&gt;, &lt;selenium.webdri...</msg>
+<var>${car_list}</var>
+<arg>${car_locator}</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:12.327211" elapsed="0.017710"/>
+</kw>
+<while condition="${car_list}">
+<iter>
+<kw name="Open Context Menu" owner="SeleniumLibrary">
+<arg>${car_list}[0]</arg>
+<doc>Opens the context menu on the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:12.344921" elapsed="0.272247"/>
+</kw>
+<kw name="Handle Alert" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:12.617168" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
+<arg>ACCEPT</arg>
+<doc>Handles the current alert and returns its message.</doc>
+<status status="PASS" start="2024-11-21T09:31:12.617168" elapsed="0.013280"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-11-21T09:31:13.135433" level="INFO">Slept 500 milliseconds.</msg>
+<arg>0.5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-11-21T09:31:12.630448" elapsed="0.504985"/>
+</kw>
+<kw name="Get WebElements" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:13.135433" level="INFO">${car_list} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="0ce0957b2c36bc3eb9f98fd60acf3d11", element="f.CF0C1647235F26754F6B651E7A5FC1E1.d.7973C570B0409A8C483B97D196030AEC.e.219")&gt;]</msg>
+<var>${car_list}</var>
+<arg>${car_locator}</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:13.135433" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-11-21T09:31:12.344921" elapsed="0.790512"/>
+</iter>
+<iter>
+<kw name="Open Context Menu" owner="SeleniumLibrary">
+<arg>${car_list}[0]</arg>
+<doc>Opens the context menu on the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:13.135433" elapsed="0.283175"/>
+</kw>
+<kw name="Handle Alert" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:13.418608" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
+<arg>ACCEPT</arg>
+<doc>Handles the current alert and returns its message.</doc>
+<status status="PASS" start="2024-11-21T09:31:13.418608" elapsed="0.008452"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-11-21T09:31:13.932662" level="INFO">Slept 500 milliseconds.</msg>
+<arg>0.5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-11-21T09:31:13.427060" elapsed="0.505602"/>
+</kw>
+<kw name="Get WebElements" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:13.932662" level="INFO">${car_list} = []</msg>
+<var>${car_list}</var>
+<arg>${car_locator}</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<status status="PASS" start="2024-11-21T09:31:13.932662" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-11-21T09:31:13.135433" elapsed="0.797229"/>
+</iter>
+<status status="PASS" start="2024-11-21T09:31:12.344921" elapsed="1.587741"/>
+</while>
+<arg>Skoda</arg>
+<status status="PASS" start="2024-11-21T09:31:12.327211" elapsed="1.605451"/>
+</kw>
+<kw name="Verify No Cars Of Make Exist">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-11-21T09:31:13.948131" level="INFO">${car_locator} = xpath=//*[@id="car-container"]//span[text()='Skoda']</msg>
+<var>${car_locator}</var>
+<arg>xpath=//*[@id="car-container"]//span[text()='${make}']</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-11-21T09:31:13.948131" elapsed="0.000000"/>
+</kw>
+<kw name="Page Should Not Contain Element" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:13.950646" level="INFO">Current page does not contain element 'xpath=//*[@id="car-container"]//span[text()='Skoda']'.</msg>
+<arg>${car_locator}</arg>
+<doc>Verifies that element ``locator`` is not found on the current page.</doc>
+<status status="PASS" start="2024-11-21T09:31:13.948131" elapsed="0.002515"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-11-21T09:31:13.950646" level="INFO">No cars of make Skoda exist on the page</msg>
+<arg>No cars of make ${make} exist on the page</arg>
+<arg>console=True</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-11-21T09:31:13.950646" elapsed="0.000000"/>
+</kw>
+<arg>Skoda</arg>
+<status status="PASS" start="2024-11-21T09:31:13.932662" elapsed="0.017984"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2024-11-21T09:31:14.103179" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="car_store_after_remove_skodas.png"&gt;&lt;img src="car_store_after_remove_skodas.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>car_store_after_remove_skodas.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2024-11-21T09:31:13.950646" elapsed="0.152533"/>
+</kw>
+<kw name="Stop Container">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-11-21T09:31:14.103179" level="INFO">Stopping container</msg>
+<arg>Stopping container</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-11-21T09:31:14.103179" elapsed="0.000000"/>
+</kw>
+<kw name="Run Process" owner="Process">
+<msg time="2024-11-21T09:31:14.103179" level="INFO">Starting process:
+docker-compose down</msg>
+<msg time="2024-11-21T09:31:14.103179" level="INFO">Waiting for process to complete.</msg>
+<msg time="2024-11-21T09:31:25.172541" level="INFO">Process completed.</msg>
+<arg>docker-compose</arg>
+<arg>down</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<status status="PASS" start="2024-11-21T09:31:14.103179" elapsed="11.069362"/>
+</kw>
+<status status="PASS" start="2024-11-21T09:31:14.103179" elapsed="11.069362"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-11-21T09:31:25.179580" elapsed="2.301647"/>
+</kw>
+<status status="PASS" start="2024-11-21T09:30:57.147613" elapsed="30.334128"/>
+</test>
+<doc>Lab 8 Part 2: Car dealer website test</doc>
+<status status="PASS" start="2024-11-21T09:30:56.784302" elapsed="30.697439"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Lab8B">Lab8B</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

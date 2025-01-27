@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.9.13 on win32)" generated="2024-10-31T10:01:30.957323" rpa="false" schemaversion="5">
+<suite id="s1" name="Atcmd" source="D:\Software_Test_Automation_for_Embedded_Systems\Exercise_2\atcmd.robot">
+<test id="s1-t1" name="Only letters" line="12">
+<kw name="Send and Verify Text">
+<kw name="Send Text" owner="AtCommandLibrary">
+<arg>${input_text}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.007847" elapsed="0.015838"/>
+</kw>
+<if>
+<branch type="IF" condition="$expected_status == &quot;INVALID&quot;">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="NOT RUN" start="2024-10-31T10:01:31.027675" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-10-31T10:01:31.023685" elapsed="0.003990"/>
+</branch>
+<branch type="ELSE">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>SENT="${expected_response}"</arg>
+<status status="PASS" start="2024-10-31T10:01:31.027675" elapsed="0.000000"/>
+</kw>
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.028689" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.027675" elapsed="0.001014"/>
+</branch>
+<status status="PASS" start="2024-10-31T10:01:31.023685" elapsed="0.005004"/>
+</if>
+<arg>This is a test</arg>
+<arg>THIS IS A TEST</arg>
+<status status="PASS" start="2024-10-31T10:01:31.006846" elapsed="0.021843"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.005846" elapsed="0.022843"/>
+</test>
+<test id="s1-t2" name="Only numbers" line="13">
+<kw name="Send and Verify Text">
+<kw name="Send Text" owner="AtCommandLibrary">
+<arg>${input_text}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.029666" elapsed="0.000997"/>
+</kw>
+<if>
+<branch type="IF" condition="$expected_status == &quot;INVALID&quot;">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="NOT RUN" start="2024-10-31T10:01:31.030663" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-10-31T10:01:31.030663" elapsed="0.000000"/>
+</branch>
+<branch type="ELSE">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>SENT="${expected_response}"</arg>
+<status status="PASS" start="2024-10-31T10:01:31.030663" elapsed="0.001000"/>
+</kw>
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.031663" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.030663" elapsed="0.001000"/>
+</branch>
+<status status="PASS" start="2024-10-31T10:01:31.030663" elapsed="0.001000"/>
+</if>
+<arg>1234567890</arg>
+<arg>1234567890</arg>
+<status status="PASS" start="2024-10-31T10:01:31.029666" elapsed="0.001997"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.029666" elapsed="0.001997"/>
+</test>
+<test id="s1-t3" name="Letters and numbers" line="14">
+<kw name="Send and Verify Text">
+<kw name="Send Text" owner="AtCommandLibrary">
+<arg>${input_text}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.032970" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="$expected_status == &quot;INVALID&quot;">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="NOT RUN" start="2024-10-31T10:01:31.033973" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-10-31T10:01:31.032970" elapsed="0.001003"/>
+</branch>
+<branch type="ELSE">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>SENT="${expected_response}"</arg>
+<status status="PASS" start="2024-10-31T10:01:31.033973" elapsed="0.000000"/>
+</kw>
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.033973" elapsed="0.000999"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.033973" elapsed="0.000999"/>
+</branch>
+<status status="PASS" start="2024-10-31T10:01:31.032970" elapsed="0.002002"/>
+</if>
+<arg>Test123</arg>
+<arg>TEST123</arg>
+<status status="PASS" start="2024-10-31T10:01:31.032970" elapsed="0.002002"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.032790" elapsed="0.002182"/>
+</test>
+<test id="s1-t4" name="With whitespace" line="15">
+<kw name="Send and Verify Text">
+<kw name="Send Text" owner="AtCommandLibrary">
+<arg>${input_text}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.036972" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="$expected_status == &quot;INVALID&quot;">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="NOT RUN" start="2024-10-31T10:01:31.036972" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-10-31T10:01:31.036972" elapsed="0.000000"/>
+</branch>
+<branch type="ELSE">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>SENT="${expected_response}"</arg>
+<status status="PASS" start="2024-10-31T10:01:31.036972" elapsed="0.000999"/>
+</kw>
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.037971" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.036972" elapsed="0.000999"/>
+</branch>
+<status status="PASS" start="2024-10-31T10:01:31.036972" elapsed="0.000999"/>
+</if>
+<arg>This${SPACE * 4}spaced</arg>
+<arg>THIS${SPACE * 4}SPACED</arg>
+<status status="PASS" start="2024-10-31T10:01:31.035971" elapsed="0.002000"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.035971" elapsed="0.002000"/>
+</test>
+<test id="s1-t5" name="Special characters" line="16">
+<kw name="Send and Verify Text">
+<kw name="Send Text" owner="AtCommandLibrary">
+<arg>${input_text}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.039972" elapsed="0.001000"/>
+</kw>
+<if>
+<branch type="IF" condition="$expected_status == &quot;INVALID&quot;">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="NOT RUN" start="2024-10-31T10:01:31.040972" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-10-31T10:01:31.040972" elapsed="0.000000"/>
+</branch>
+<branch type="ELSE">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>SENT="${expected_response}"</arg>
+<status status="PASS" start="2024-10-31T10:01:31.040972" elapsed="0.001001"/>
+</kw>
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.041973" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.040972" elapsed="0.001001"/>
+</branch>
+<status status="PASS" start="2024-10-31T10:01:31.040972" elapsed="0.001001"/>
+</if>
+<arg>@#$%^&amp;*()</arg>
+<arg>XXXXXXXXX</arg>
+<status status="PASS" start="2024-10-31T10:01:31.039972" elapsed="0.002001"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.038971" elapsed="0.003002"/>
+</test>
+<test id="s1-t6" name="Mixed input" line="17">
+<kw name="Send and Verify Text">
+<kw name="Send Text" owner="AtCommandLibrary">
+<arg>${input_text}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.043994" elapsed="0.000996"/>
+</kw>
+<if>
+<branch type="IF" condition="$expected_status == &quot;INVALID&quot;">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="NOT RUN" start="2024-10-31T10:01:31.044990" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-10-31T10:01:31.044990" elapsed="0.000000"/>
+</branch>
+<branch type="ELSE">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>SENT="${expected_response}"</arg>
+<status status="PASS" start="2024-10-31T10:01:31.044990" elapsed="0.001008"/>
+</kw>
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.045998" elapsed="0.000996"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.044990" elapsed="0.002004"/>
+</branch>
+<status status="PASS" start="2024-10-31T10:01:31.044990" elapsed="0.002004"/>
+</if>
+<arg>Hello 123 !</arg>
+<arg>HELLO 123 X</arg>
+<status status="PASS" start="2024-10-31T10:01:31.043994" elapsed="0.003000"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.042983" elapsed="0.004011"/>
+</test>
+<test id="s1-t7" name="Upper and lower case mix" line="18">
+<kw name="Send and Verify Text">
+<kw name="Send Text" owner="AtCommandLibrary">
+<arg>${input_text}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.047982" elapsed="0.000998"/>
+</kw>
+<if>
+<branch type="IF" condition="$expected_status == &quot;INVALID&quot;">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="NOT RUN" start="2024-10-31T10:01:31.048980" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-10-31T10:01:31.048980" elapsed="0.000000"/>
+</branch>
+<branch type="ELSE">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>SENT="${expected_response}"</arg>
+<status status="PASS" start="2024-10-31T10:01:31.048980" elapsed="0.000999"/>
+</kw>
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.049979" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.048980" elapsed="0.000999"/>
+</branch>
+<status status="PASS" start="2024-10-31T10:01:31.048980" elapsed="0.000999"/>
+</if>
+<arg>hElLo WoRlD</arg>
+<arg>HELLO WORLD</arg>
+<status status="PASS" start="2024-10-31T10:01:31.047982" elapsed="0.001997"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.047982" elapsed="0.001997"/>
+</test>
+<test id="s1-t8" name="Empty string" line="19">
+<kw name="Send and Verify Text">
+<kw name="Send Text" owner="AtCommandLibrary">
+<arg>${input_text}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.051979" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="$expected_status == &quot;INVALID&quot;">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="NOT RUN" start="2024-10-31T10:01:31.052980" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-10-31T10:01:31.051979" elapsed="0.001001"/>
+</branch>
+<branch type="ELSE">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>SENT="${expected_response}"</arg>
+<status status="PASS" start="2024-10-31T10:01:31.052980" elapsed="0.000000"/>
+</kw>
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.052980" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.052980" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-10-31T10:01:31.051979" elapsed="0.001001"/>
+</if>
+<arg>""</arg>
+<arg>${EMPTY}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.050980" elapsed="0.002000"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.050980" elapsed="0.003056"/>
+</test>
+<test id="s1-t9" name="Tab character" line="20">
+<kw name="Send and Verify Text">
+<kw name="Send Text" owner="AtCommandLibrary">
+<arg>${input_text}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.055172" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="$expected_status == &quot;INVALID&quot;">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="NOT RUN" start="2024-10-31T10:01:31.056173" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-10-31T10:01:31.055172" elapsed="0.001001"/>
+</branch>
+<branch type="ELSE">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>SENT="${expected_response}"</arg>
+<status status="PASS" start="2024-10-31T10:01:31.056173" elapsed="0.000000"/>
+</kw>
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.057171" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.056173" elapsed="0.000998"/>
+</branch>
+<status status="PASS" start="2024-10-31T10:01:31.055172" elapsed="0.001999"/>
+</if>
+<arg>Tabbed\ttext</arg>
+<arg>TABBED TEXT</arg>
+<status status="PASS" start="2024-10-31T10:01:31.055172" elapsed="0.001999"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.054155" elapsed="0.003529"/>
+</test>
+<test id="s1-t10" name="Non-ASCII characters" line="21">
+<kw name="Send and Verify Text">
+<kw name="Send Text" owner="AtCommandLibrary">
+<arg>${input_text}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.059709" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="$expected_status == &quot;INVALID&quot;">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="NOT RUN" start="2024-10-31T10:01:31.060704" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-10-31T10:01:31.060704" elapsed="0.000000"/>
+</branch>
+<branch type="ELSE">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>SENT="${expected_response}"</arg>
+<status status="PASS" start="2024-10-31T10:01:31.060704" elapsed="0.000995"/>
+</kw>
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.061699" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.060704" elapsed="0.000995"/>
+</branch>
+<status status="PASS" start="2024-10-31T10:01:31.060704" elapsed="0.000995"/>
+</if>
+<arg>ÅÄÖ</arg>
+<arg>XXX</arg>
+<status status="PASS" start="2024-10-31T10:01:31.058705" elapsed="0.002994"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.058705" elapsed="0.002994"/>
+</test>
+<test id="s1-t11" name="Control characters" line="22">
+<kw name="Send and Verify Text">
+<kw name="Send Text" owner="AtCommandLibrary">
+<arg>${input_text}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.063694" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="$expected_status == &quot;INVALID&quot;">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="NOT RUN" start="2024-10-31T10:01:31.063694" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-10-31T10:01:31.063694" elapsed="0.000000"/>
+</branch>
+<branch type="ELSE">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>SENT="${expected_response}"</arg>
+<status status="PASS" start="2024-10-31T10:01:31.064754" elapsed="0.000106"/>
+</kw>
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.064860" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.063694" elapsed="0.001166"/>
+</branch>
+<status status="PASS" start="2024-10-31T10:01:31.063694" elapsed="0.001166"/>
+</if>
+<arg>\x01\x02\x03</arg>
+<arg>XXX</arg>
+<status status="PASS" start="2024-10-31T10:01:31.062692" elapsed="0.002168"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.062692" elapsed="0.002168"/>
+</test>
+<test id="s1-t12" name="Some thing else" line="23">
+<kw name="Send and Verify Text">
+<kw name="Send Text" owner="AtCommandLibrary">
+<arg>${input_text}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.066869" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="$expected_status == &quot;INVALID&quot;">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="PASS" start="2024-10-31T10:01:31.066869" elapsed="0.001002"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.066869" elapsed="0.001002"/>
+</branch>
+<branch type="ELSE">
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>SENT="${expected_response}"</arg>
+<status status="NOT RUN" start="2024-10-31T10:01:31.067871" elapsed="0.000000"/>
+</kw>
+<kw name="Response Should Be" owner="AtCommandLibrary">
+<arg>${expected_status}</arg>
+<status status="NOT RUN" start="2024-10-31T10:01:31.067871" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-10-31T10:01:31.067871" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-10-31T10:01:31.066869" elapsed="0.001002"/>
+</if>
+<arg>\r\n</arg>
+<arg>${EMPTY}</arg>
+<arg>INVALID</arg>
+<status status="PASS" start="2024-10-31T10:01:31.065868" elapsed="0.002003"/>
+</kw>
+<status status="PASS" start="2024-10-31T10:01:31.065868" elapsed="0.002003"/>
+</test>
+<doc>Example of morse transmitter test
+
+Change this example to use data driven style
+Test with different texts and speeds</doc>
+<status status="PASS" start="2024-10-31T10:01:30.958592" elapsed="0.110279"/>
+</suite>
+<statistics>
+<total>
+<stat pass="12" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="12" fail="0" skip="0" id="s1" name="Atcmd">Atcmd</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

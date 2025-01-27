@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.9.13 on win32)" generated="2024-11-25T11:39:27.883644" rpa="false" schemaversion="5">
+<suite id="s1" name="Libraries Keywords" source="D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\libraries_keywords.robot">
+<test id="s1-t1" name="Remove Existing File Test" line="35">
+<kw name="Remove Existing File">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="File Should Exist" owner="OperatingSystem">
+<msg time="2024-11-25T11:39:28.527395" level="INFO" html="true">File '&lt;a href="file://D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\test.txt"&gt;D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\test.txt&lt;/a&gt;' exists.</msg>
+<arg>${file}</arg>
+<doc>Fails unless the given ``path`` points to an existing file.</doc>
+<status status="PASS" start="2024-11-25T11:39:28.527395" elapsed="0.000000"/>
+</kw>
+<msg time="2024-11-25T11:39:28.527395" level="INFO">${file_exist} = True</msg>
+<var>${file_exist}</var>
+<arg>File Should Exist</arg>
+<arg>${file}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2024-11-25T11:39:28.527395" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="${file_exist}">
+<kw name="Get File" owner="OperatingSystem">
+<msg time="2024-11-25T11:39:28.527395" level="INFO" html="true">Getting file '&lt;a href="file://D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\test.txt"&gt;D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\test.txt&lt;/a&gt;'.</msg>
+<msg time="2024-11-25T11:39:28.543036" level="INFO">${file_text} = Juha Uotila
+Vaarnakuja 955
+12906 Rovaniemi</msg>
+<var>${file_text}</var>
+<arg>${file}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<status status="PASS" start="2024-11-25T11:39:28.527395" elapsed="0.015641"/>
+</kw>
+<kw name="Get Line" owner="String">
+<msg time="2024-11-25T11:39:28.543036" level="INFO">${first_line} = Juha Uotila</msg>
+<var>${first_line}</var>
+<arg>${file_text}</arg>
+<arg>0</arg>
+<doc>Returns the specified line from the given ``string``.</doc>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-11-25T11:39:28.543036" level="INFO">First line is Juha Uotila</msg>
+<arg>First line is ${first_line}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</kw>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2024-11-25T11:39:28.543036" level="INFO" html="true">Removed file '&lt;a href="file://D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\test.txt"&gt;D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\test.txt&lt;/a&gt;'.</msg>
+<arg>${file}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-11-25T11:39:28.527395" elapsed="0.015641"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" owner="BuiltIn">
+<arg>File does not exist</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-11-25T11:39:28.527395" elapsed="0.015641"/>
+</if>
+<arg>${Address_file}</arg>
+<status status="PASS" start="2024-11-25T11:39:28.527395" elapsed="0.015641"/>
+</kw>
+<status status="PASS" start="2024-11-25T11:39:28.527395" elapsed="0.015641"/>
+</test>
+<test id="s1-t2" name="Create New Address File" line="38">
+<kw name="Get Random Names">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-11-25T11:39:28.543036" level="INFO">Got argument 5</msg>
+<arg>Got argument ${number of random names}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</kw>
+<kw name="Create List" owner="BuiltIn">
+<msg time="2024-11-25T11:39:28.543036" level="INFO">@{names} = [ ]</msg>
+<var>@{names}</var>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</kw>
+<for flavor="IN RANGE">
+<iter>
+<kw name="Name" owner="FakerLibrary">
+<msg time="2024-11-25T11:39:28.543036" level="INFO">${name} = Sinikka Savolainen</msg>
+<var>${name}</var>
+<doc>:example: 'John Doe'</doc>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${names}</arg>
+<arg>${name}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</kw>
+<var name="${i}">0</var>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Name" owner="FakerLibrary">
+<msg time="2024-11-25T11:39:28.543036" level="INFO">${name} = Kirsti Heiskanen</msg>
+<var>${name}</var>
+<doc>:example: 'John Doe'</doc>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${names}</arg>
+<arg>${name}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</kw>
+<var name="${i}">1</var>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Name" owner="FakerLibrary">
+<msg time="2024-11-25T11:39:28.543036" level="INFO">${name} = Kai Pesonen</msg>
+<var>${name}</var>
+<doc>:example: 'John Doe'</doc>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${names}</arg>
+<arg>${name}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</kw>
+<var name="${i}">2</var>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Name" owner="FakerLibrary">
+<msg time="2024-11-25T11:39:28.543036" level="INFO">${name} = Inkeri Kilpeläinen</msg>
+<var>${name}</var>
+<doc>:example: 'John Doe'</doc>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${names}</arg>
+<arg>${name}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</kw>
+<var name="${i}">3</var>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Name" owner="FakerLibrary">
+<msg time="2024-11-25T11:39:28.554048" level="INFO">${name} = Ari Hytönen</msg>
+<var>${name}</var>
+<doc>:example: 'John Doe'</doc>
+<status status="PASS" start="2024-11-25T11:39:28.554048" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${names}</arg>
+<arg>${name}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-11-25T11:39:28.554048" elapsed="0.000000"/>
+</kw>
+<var name="${i}">4</var>
+<status status="PASS" start="2024-11-25T11:39:28.554048" elapsed="0.000000"/>
+</iter>
+<var>${i}</var>
+<value>${number of random names}</value>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.011012"/>
+</for>
+<return>
+<value>@{names}</value>
+<status status="PASS" start="2024-11-25T11:39:28.554048" elapsed="0.000000"/>
+</return>
+<msg time="2024-11-25T11:39:28.554048" level="INFO">${names} = ['Sinikka Savolainen', 'Kirsti Heiskanen', 'Kai Pesonen', 'Inkeri Kilpeläinen', 'Ari Hytönen']</msg>
+<var>${names}</var>
+<arg>5</arg>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="0.011012"/>
+</kw>
+<kw name="Get Selection From User" owner="Dialogs">
+<msg time="2024-11-25T11:39:32.848831" level="INFO">${selected_name} = Kirsti Heiskanen</msg>
+<var>${selected_name}</var>
+<arg>Select from these names:</arg>
+<arg>@{names}</arg>
+<doc>Pauses execution and asks user to select a value.</doc>
+<status status="PASS" start="2024-11-25T11:39:28.554048" elapsed="4.294783"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-11-25T11:39:32.848831" level="INFO">Selected name is Kirsti Heiskanen</msg>
+<arg>Selected name is ${selected_name}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-11-25T11:39:32.848831" elapsed="0.000000"/>
+</kw>
+<kw name="Street Address" owner="FakerLibrary">
+<msg time="2024-11-25T11:39:32.848831" level="INFO">${address} = Rukokuja 29</msg>
+<var>${address}</var>
+<doc>:example: '791 Crist Parks'</doc>
+<status status="PASS" start="2024-11-25T11:39:32.848831" elapsed="0.000000"/>
+</kw>
+<kw name="Postcode" owner="FakerLibrary">
+<msg time="2024-11-25T11:39:32.848831" level="INFO">${postcode} = 91349</msg>
+<var>${postcode}</var>
+<doc>:example: 86039-9874</doc>
+<status status="PASS" start="2024-11-25T11:39:32.848831" elapsed="0.000000"/>
+</kw>
+<kw name="City" owner="FakerLibrary">
+<msg time="2024-11-25T11:39:32.848831" level="INFO">${city} = Hirvensalmi</msg>
+<var>${city}</var>
+<doc>:example: 'Sashabury'</doc>
+<status status="PASS" start="2024-11-25T11:39:32.848831" elapsed="0.000000"/>
+</kw>
+<kw name="Create File" owner="OperatingSystem">
+<msg time="2024-11-25T11:39:32.848831" level="INFO" html="true">Created file '&lt;a href="file://D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\test.txt"&gt;D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\test.txt&lt;/a&gt;'.</msg>
+<arg>${Address_file}</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<status status="PASS" start="2024-11-25T11:39:32.848831" elapsed="0.000000"/>
+</kw>
+<kw name="Append To File" owner="OperatingSystem">
+<msg time="2024-11-25T11:39:32.848831" level="INFO" html="true">Appended to file '&lt;a href="file://D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\test.txt"&gt;D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\test.txt&lt;/a&gt;'.</msg>
+<arg>${Address_file}</arg>
+<arg>${selected_name}\n</arg>
+<doc>Appends the given content to the specified file.</doc>
+<status status="PASS" start="2024-11-25T11:39:32.848831" elapsed="0.000000"/>
+</kw>
+<kw name="Append To File" owner="OperatingSystem">
+<msg time="2024-11-25T11:39:32.848831" level="INFO" html="true">Appended to file '&lt;a href="file://D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\test.txt"&gt;D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\test.txt&lt;/a&gt;'.</msg>
+<arg>${Address_file}</arg>
+<arg>${address}\n</arg>
+<doc>Appends the given content to the specified file.</doc>
+<status status="PASS" start="2024-11-25T11:39:32.848831" elapsed="0.000000"/>
+</kw>
+<kw name="Append To File" owner="OperatingSystem">
+<msg time="2024-11-25T11:39:32.848831" level="INFO" html="true">Appended to file '&lt;a href="file://D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\test.txt"&gt;D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\test.txt&lt;/a&gt;'.</msg>
+<arg>${Address_file}</arg>
+<arg>${postcode} ${city}</arg>
+<doc>Appends the given content to the specified file.</doc>
+<status status="PASS" start="2024-11-25T11:39:32.848831" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-11-25T11:39:28.543036" elapsed="4.305795"/>
+</test>
+<test id="s1-t3" name="Checks Address File" line="50">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="File Should Exist" owner="OperatingSystem">
+<msg time="2024-11-25T11:39:32.859852" level="INFO" html="true">File '&lt;a href="file://D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\test.txt"&gt;D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\test.txt&lt;/a&gt;' exists.</msg>
+<arg>${Address_file}</arg>
+<doc>Fails unless the given ``path`` points to an existing file.</doc>
+<status status="PASS" start="2024-11-25T11:39:32.859852" elapsed="0.001511"/>
+</kw>
+<msg time="2024-11-25T11:39:32.861363" level="INFO">${file_exist} = True</msg>
+<var>${file_exist}</var>
+<arg>File Should Exist</arg>
+<arg>${Address_file}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2024-11-25T11:39:32.859852" elapsed="0.001511"/>
+</kw>
+<if>
+<branch type="IF" condition="${file_exist}">
+<kw name="Get File" owner="OperatingSystem">
+<msg time="2024-11-25T11:39:32.861363" level="INFO" html="true">Getting file '&lt;a href="file://D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\test.txt"&gt;D:\Software_Test_Automation_for_Embedded_Systems\Exercise_1\test.txt&lt;/a&gt;'.</msg>
+<msg time="2024-11-25T11:39:32.861363" level="INFO">${file_text} = Kirsti Heiskanen
+Rukokuja 29
+91349 Hirvensalmi</msg>
+<var>${file_text}</var>
+<arg>${Address_file}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<status status="PASS" start="2024-11-25T11:39:32.861363" elapsed="0.000000"/>
+</kw>
+<kw name="Get Line Count" owner="String">
+<msg time="2024-11-25T11:39:32.861363" level="INFO">3 lines.</msg>
+<msg time="2024-11-25T11:39:32.861363" level="INFO">${count} = 3</msg>
+<var>${count}</var>
+<arg>${file_text}</arg>
+<doc>Returns and logs the number of lines in the given string.</doc>
+<status status="PASS" start="2024-11-25T11:39:32.861363" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-11-25T11:39:32.861363" level="INFO">File has 3 lines</msg>
+<arg>File has ${count} lines</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-11-25T11:39:32.861363" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="${count} != 3">
+<kw name="Log" owner="BuiltIn">
+<arg>File does not have 3 lines</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-11-25T11:39:32.861363" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-11-25T11:39:32.861363" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-11-25T11:39:32.861363" elapsed="0.000000"/>
+</if>
+<status status="PASS" start="2024-11-25T11:39:32.861363" elapsed="0.000000"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" owner="BuiltIn">
+<arg>File does not exist</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-11-25T11:39:32.861363" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-11-25T11:39:32.861363" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-11-25T11:39:32.861363" elapsed="0.000000"/>
+</if>
+<status status="PASS" start="2024-11-25T11:39:32.859852" elapsed="0.001511"/>
+</test>
+<status status="PASS" start="2024-11-25T11:39:27.899418" elapsed="4.961945"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="3" fail="0" skip="0" id="s1" name="Libraries Keywords">Libraries Keywords</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

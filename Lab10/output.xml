@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.9.13 on win32)" generated="2024-12-02T10:24:47.102465" rpa="false" schemaversion="5">
+<suite id="s1" name="Lab10" source="D:\Software_Test_Automation_for_Embedded_Systems\Lab10\lab10.robot">
+<test id="s1-t1" name="Remove Existing Remote File Test" line="82">
+<kw name="Remove Existing Remote File">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-12-02T10:24:48.619505" level="INFO">${remote_file} = /home2-2/n/nadima/test.txt</msg>
+<var>${remote_file}</var>
+<arg>${REMOTE_PATH}${file}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-12-02T10:24:48.618906" elapsed="0.000599"/>
+</kw>
+<kw name="Establish SSH Connection">
+<kw name="Open Connection" owner="SSHLibrary">
+<arg>${SSH_HOST}</arg>
+<doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
+<status status="PASS" start="2024-12-02T10:24:48.620574" elapsed="0.000686"/>
+</kw>
+<kw name="Login With Public Key" owner="SSHLibrary">
+<msg time="2024-12-02T10:24:48.621797" level="INFO">Logging into 'shell.metropolia.fi:22' as 'nadima'.</msg>
+<msg time="2024-12-02T10:24:50.718278" level="INFO">Read output: Last login: Mon Dec  2 10:12:33 2024 from 10.72.153.240
+[?2004h[nadima@shell ~]$</msg>
+<arg>${SSH_USER}</arg>
+<arg>${SSH_KEY_PATH}</arg>
+<doc>Logs into the SSH server using key-based authentication.</doc>
+<status status="PASS" start="2024-12-02T10:24:48.621260" elapsed="2.097018"/>
+</kw>
+<status status="PASS" start="2024-12-02T10:24:48.620019" elapsed="2.098259"/>
+</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Execute Command" owner="SSHLibrary">
+<msg time="2024-12-02T10:24:50.718278" level="INFO">Executing command 'test -f /home2-2/n/nadima/test.txt'.</msg>
+<msg time="2024-12-02T10:24:50.766347" level="INFO">Command exited with return code 0.</msg>
+<arg>test -f ${remote_file}</arg>
+<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
+<status status="PASS" start="2024-12-02T10:24:50.718278" elapsed="0.048069"/>
+</kw>
+<msg time="2024-12-02T10:24:50.766347" level="INFO">${file_exist} = True</msg>
+<var>${file_exist}</var>
+<arg>Execute Command</arg>
+<arg>test -f ${remote_file}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2024-12-02T10:24:50.718278" elapsed="0.048069"/>
+</kw>
+<if>
+<branch type="IF" condition="${file_exist}">
+<kw name="Execute Command" owner="SSHLibrary">
+<msg time="2024-12-02T10:24:50.766347" level="INFO">Executing command 'head -n 1 /home2-2/n/nadima/test.txt'.</msg>
+<msg time="2024-12-02T10:24:50.854130" level="INFO">Command exited with return code 0.</msg>
+<msg time="2024-12-02T10:24:50.854130" level="INFO">${first_line} = Leila Pöllänen</msg>
+<var>${first_line}</var>
+<arg>head -n 1 ${remote_file}</arg>
+<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
+<status status="PASS" start="2024-12-02T10:24:50.766347" elapsed="0.087783"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-12-02T10:24:50.854130" level="INFO">First line is Leila Pöllänen</msg>
+<arg>First line is ${first_line}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-12-02T10:24:50.854130" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Command" owner="SSHLibrary">
+<msg time="2024-12-02T10:24:50.854130" level="INFO">Executing command 'rm /home2-2/n/nadima/test.txt'.</msg>
+<msg time="2024-12-02T10:24:50.926662" level="INFO">Command exited with return code 0.</msg>
+<arg>rm ${remote_file}</arg>
+<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
+<status status="PASS" start="2024-12-02T10:24:50.854130" elapsed="0.072532"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-12-02T10:24:50.927171" level="INFO">File removed: /home2-2/n/nadima/test.txt</msg>
+<arg>File removed: ${remote_file}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-12-02T10:24:50.927171" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-12-02T10:24:50.766347" elapsed="0.160824"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" owner="BuiltIn">
+<arg>File does not exist</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-12-02T10:24:50.927171" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-12-02T10:24:50.927171" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-12-02T10:24:50.766347" elapsed="0.160824"/>
+</if>
+<kw name="Close SSH Connection">
+<kw name="Close Connection" owner="SSHLibrary">
+<doc>Closes the current connection.</doc>
+<status status="PASS" start="2024-12-02T10:24:50.927171" elapsed="0.039766"/>
+</kw>
+<status status="PASS" start="2024-12-02T10:24:50.927171" elapsed="0.039766"/>
+</kw>
+<arg>${Address_file}</arg>
+<status status="PASS" start="2024-12-02T10:24:48.616642" elapsed="2.350295"/>
+</kw>
+<status status="PASS" start="2024-12-02T10:24:48.614904" elapsed="2.352033"/>
+</test>
+<test id="s1-t2" name="Create New Remote Address File Test" line="85">
+<kw name="Create New Remote Address File">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-12-02T10:24:50.966937" level="INFO">${remote_file} = /home2-2/n/nadima/test.txt</msg>
+<var>${remote_file}</var>
+<arg>${REMOTE_PATH}${file}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-12-02T10:24:50.966937" elapsed="0.000000"/>
+</kw>
+<kw name="Get Remote Random Names">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-12-02T10:24:50.975260" level="INFO">Got argument 5</msg>
+<arg>Got argument ${number of random names}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-12-02T10:24:50.975260" elapsed="0.000000"/>
+</kw>
+<kw name="Create List" owner="BuiltIn">
+<msg time="2024-12-02T10:24:50.975260" level="INFO">@{names} = [ ]</msg>
+<var>@{names}</var>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2024-12-02T10:24:50.975260" elapsed="0.000000"/>
+</kw>
+<for flavor="IN RANGE">
+<iter>
+<kw name="Name" owner="FakerLibrary">
+<msg time="2024-12-02T10:24:50.975260" level="INFO">${name} = Joni Tervo-Viitala</msg>
+<var>${name}</var>
+<doc>:example: 'John Doe'</doc>
+<status status="PASS" start="2024-12-02T10:24:50.975260" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${names}</arg>
+<arg>${name}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-12-02T10:24:50.975260" elapsed="0.000000"/>
+</kw>
+<var name="${i}">0</var>
+<status status="PASS" start="2024-12-02T10:24:50.975260" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Name" owner="FakerLibrary">
+<msg time="2024-12-02T10:24:50.975260" level="INFO">${name} = Matias Saarinen</msg>
+<var>${name}</var>
+<doc>:example: 'John Doe'</doc>
+<status status="PASS" start="2024-12-02T10:24:50.975260" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${names}</arg>
+<arg>${name}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-12-02T10:24:50.975260" elapsed="0.000000"/>
+</kw>
+<var name="${i}">1</var>
+<status status="PASS" start="2024-12-02T10:24:50.975260" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Name" owner="FakerLibrary">
+<msg time="2024-12-02T10:24:50.975260" level="INFO">${name} = Erik Liukkonen</msg>
+<var>${name}</var>
+<doc>:example: 'John Doe'</doc>
+<status status="PASS" start="2024-12-02T10:24:50.975260" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${names}</arg>
+<arg>${name}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-12-02T10:24:50.975260" elapsed="0.000000"/>
+</kw>
+<var name="${i}">2</var>
+<status status="PASS" start="2024-12-02T10:24:50.975260" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Name" owner="FakerLibrary">
+<msg time="2024-12-02T10:24:50.975260" level="INFO">${name} = Kerttu Kiuru</msg>
+<var>${name}</var>
+<doc>:example: 'John Doe'</doc>
+<status status="PASS" start="2024-12-02T10:24:50.975260" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${names}</arg>
+<arg>${name}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-12-02T10:24:50.975260" elapsed="0.000000"/>
+</kw>
+<var name="${i}">3</var>
+<status status="PASS" start="2024-12-02T10:24:50.975260" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Name" owner="FakerLibrary">
+<msg time="2024-12-02T10:24:50.975260" level="INFO">${name} = Hannele Hämäläinen</msg>
+<var>${name}</var>
+<doc>:example: 'John Doe'</doc>
+<status status="PASS" start="2024-12-02T10:24:50.975260" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${names}</arg>
+<arg>${name}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-12-02T10:24:50.983542" elapsed="0.000000"/>
+</kw>
+<var name="${i}">4</var>
+<status status="PASS" start="2024-12-02T10:24:50.975260" elapsed="0.008282"/>
+</iter>
+<var>${i}</var>
+<value>${number of random names}</value>
+<status status="PASS" start="2024-12-02T10:24:50.975260" elapsed="0.008282"/>
+</for>
+<return>
+<value>@{names}</value>
+<status status="PASS" start="2024-12-02T10:24:50.983542" elapsed="0.000000"/>
+</return>
+<msg time="2024-12-02T10:24:50.983542" level="INFO">${names} = ['Joni Tervo-Viitala', 'Matias Saarinen', 'Erik Liukkonen', 'Kerttu Kiuru', 'Hannele Hämäläinen']</msg>
+<var>${names}</var>
+<arg>5</arg>
+<status status="PASS" start="2024-12-02T10:24:50.974931" elapsed="0.008611"/>
+</kw>
+<kw name="Get Selection From User" owner="Dialogs">
+<msg time="2024-12-02T10:24:56.326480" level="INFO">${selected_name} = Joni Tervo-Viitala</msg>
+<var>${selected_name}</var>
+<arg>Select from these names:</arg>
+<arg>@{names}</arg>
+<doc>Pauses execution and asks user to select a value.</doc>
+<status status="PASS" start="2024-12-02T10:24:50.983542" elapsed="5.342938"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-12-02T10:24:56.326480" level="INFO">Selected name is Joni Tervo-Viitala</msg>
+<arg>Selected name is ${selected_name}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-12-02T10:24:56.326480" elapsed="0.000000"/>
+</kw>
+<kw name="Street Address" owner="FakerLibrary">
+<msg time="2024-12-02T10:24:56.332510" level="INFO">${address} = Haakoninlahdenpolku 1</msg>
+<var>${address}</var>
+<doc>:example: '791 Crist Parks'</doc>
+<status status="PASS" start="2024-12-02T10:24:56.326480" elapsed="0.006030"/>
+</kw>
+<kw name="Postcode" owner="FakerLibrary">
+<msg time="2024-12-02T10:24:56.332510" level="INFO">${postcode} = 92800</msg>
+<var>${postcode}</var>
+<doc>:example: 86039-9874</doc>
+<status status="PASS" start="2024-12-02T10:24:56.332510" elapsed="0.000000"/>
+</kw>
+<kw name="City" owner="FakerLibrary">
+<msg time="2024-12-02T10:24:56.332510" level="INFO">${city} = Taivalkoski</msg>
+<var>${city}</var>
+<doc>:example: 'Sashabury'</doc>
+<status status="PASS" start="2024-12-02T10:24:56.332510" elapsed="0.000000"/>
+</kw>
+<kw name="Establish SSH Connection">
+<kw name="Open Connection" owner="SSHLibrary">
+<arg>${SSH_HOST}</arg>
+<doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
+<status status="PASS" start="2024-12-02T10:24:56.332510" elapsed="0.000000"/>
+</kw>
+<kw name="Login With Public Key" owner="SSHLibrary">
+<msg time="2024-12-02T10:24:56.332510" level="INFO">Logging into 'shell.metropolia.fi:22' as 'nadima'.</msg>
+<msg time="2024-12-02T10:24:58.294591" level="INFO">Read output: Last login: Mon Dec  2 10:24:49 2024 from 10.72.153.240
+[?2004h[nadima@shell ~]$</msg>
+<arg>${SSH_USER}</arg>
+<arg>${SSH_KEY_PATH}</arg>
+<doc>Logs into the SSH server using key-based authentication.</doc>
+<status status="PASS" start="2024-12-02T10:24:56.332510" elapsed="1.962573"/>
+</kw>
+<status status="PASS" start="2024-12-02T10:24:56.332510" elapsed="1.962573"/>
+</kw>
+<kw name="Execute Command" owner="SSHLibrary">
+<msg time="2024-12-02T10:24:58.295083" level="INFO">Executing command 'echo "Joni Tervo-Viitala" &gt; /home2-2/n/nadima/test.txt'.</msg>
+<msg time="2024-12-02T10:24:58.344367" level="INFO">Command exited with return code 0.</msg>
+<arg>echo "${selected_name}" &gt; ${remote_file}</arg>
+<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
+<status status="PASS" start="2024-12-02T10:24:58.295083" elapsed="0.049423"/>
+</kw>
+<kw name="Execute Command" owner="SSHLibrary">
+<msg time="2024-12-02T10:24:58.344506" level="INFO">Executing command 'echo "Haakoninlahdenpolku 1" &gt;&gt; /home2-2/n/nadima/test.txt'.</msg>
+<msg time="2024-12-02T10:24:58.417929" level="INFO">Command exited with return code 0.</msg>
+<arg>echo "${address}" &gt;&gt; ${remote_file}</arg>
+<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
+<status status="PASS" start="2024-12-02T10:24:58.344506" elapsed="0.073761"/>
+</kw>
+<kw name="Execute Command" owner="SSHLibrary">
+<msg time="2024-12-02T10:24:58.418344" level="INFO">Executing command 'echo "92800 Taivalkoski" &gt;&gt; /home2-2/n/nadima/test.txt'.</msg>
+<msg time="2024-12-02T10:24:58.499855" level="INFO">Command exited with return code 0.</msg>
+<arg>echo "${postcode} ${city}" &gt;&gt; ${remote_file}</arg>
+<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
+<status status="PASS" start="2024-12-02T10:24:58.418344" elapsed="0.081511"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-12-02T10:24:58.499855" level="INFO">File created: /home2-2/n/nadima/test.txt</msg>
+<arg>File created: ${remote_file}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-12-02T10:24:58.499855" elapsed="0.000000"/>
+</kw>
+<kw name="Close SSH Connection">
+<kw name="Close Connection" owner="SSHLibrary">
+<doc>Closes the current connection.</doc>
+<status status="PASS" start="2024-12-02T10:24:58.499855" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-12-02T10:24:58.499855" elapsed="0.000000"/>
+</kw>
+<arg>${Address_file}</arg>
+<status status="PASS" start="2024-12-02T10:24:50.966937" elapsed="7.532918"/>
+</kw>
+<status status="PASS" start="2024-12-02T10:24:50.966937" elapsed="7.532918"/>
+</test>
+<test id="s1-t3" name="Check Remote Address File Test" line="88">
+<kw name="Check Remote Address File">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-12-02T10:24:58.499855" level="INFO">${remote_file} = /home2-2/n/nadima/test.txt</msg>
+<var>${remote_file}</var>
+<arg>${REMOTE_PATH}${file}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-12-02T10:24:58.499855" elapsed="0.000000"/>
+</kw>
+<kw name="Establish SSH Connection">
+<kw name="Open Connection" owner="SSHLibrary">
+<arg>${SSH_HOST}</arg>
+<doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
+<status status="PASS" start="2024-12-02T10:24:58.499855" elapsed="0.000000"/>
+</kw>
+<kw name="Login With Public Key" owner="SSHLibrary">
+<msg time="2024-12-02T10:24:58.499855" level="INFO">Logging into 'shell.metropolia.fi:22' as 'nadima'.</msg>
+<msg time="2024-12-02T10:24:59.944755" level="INFO">Read output: Last login: Mon Dec  2 10:24:57 2024 from 10.72.153.240
+[?2004h[nadima@shell ~]$</msg>
+<arg>${SSH_USER}</arg>
+<arg>${SSH_KEY_PATH}</arg>
+<doc>Logs into the SSH server using key-based authentication.</doc>
+<status status="PASS" start="2024-12-02T10:24:58.499855" elapsed="1.444900"/>
+</kw>
+<status status="PASS" start="2024-12-02T10:24:58.499855" elapsed="1.444900"/>
+</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Execute Command" owner="SSHLibrary">
+<msg time="2024-12-02T10:24:59.944755" level="INFO">Executing command 'test -f /home2-2/n/nadima/test.txt'.</msg>
+<msg time="2024-12-02T10:25:00.008771" level="INFO">Command exited with return code 0.</msg>
+<arg>test -f ${remote_file}</arg>
+<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
+<status status="PASS" start="2024-12-02T10:24:59.944755" elapsed="0.064464"/>
+</kw>
+<msg time="2024-12-02T10:25:00.009219" level="INFO">${file_exist} = True</msg>
+<var>${file_exist}</var>
+<arg>Execute Command</arg>
+<arg>test -f ${remote_file}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2024-12-02T10:24:59.944755" elapsed="0.064464"/>
+</kw>
+<if>
+<branch type="IF" condition="${file_exist}">
+<kw name="Execute Command" owner="SSHLibrary">
+<msg time="2024-12-02T10:25:00.009219" level="INFO">Executing command 'wc -l &lt; /home2-2/n/nadima/test.txt'.</msg>
+<msg time="2024-12-02T10:25:00.075548" level="INFO">Command exited with return code 0.</msg>
+<msg time="2024-12-02T10:25:00.075548" level="INFO">${line_count} = 3</msg>
+<var>${line_count}</var>
+<arg>wc -l &lt; ${remote_file}</arg>
+<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
+<status status="PASS" start="2024-12-02T10:25:00.009219" elapsed="0.066329"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-12-02T10:25:00.077224" level="INFO">File has 3 lines</msg>
+<arg>File has ${line_count} lines</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-12-02T10:25:00.077224" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="${line_count} != 3">
+<kw name="Log" owner="BuiltIn">
+<arg>File does not have 3 lines</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-12-02T10:25:00.077224" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-12-02T10:25:00.077224" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-12-02T10:25:00.077224" elapsed="0.000000"/>
+</if>
+<status status="PASS" start="2024-12-02T10:25:00.009219" elapsed="0.068005"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" owner="BuiltIn">
+<arg>File does not exist</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-12-02T10:25:00.077224" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-12-02T10:25:00.077224" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-12-02T10:25:00.009219" elapsed="0.068005"/>
+</if>
+<kw name="Close SSH Connection">
+<kw name="Close Connection" owner="SSHLibrary">
+<doc>Closes the current connection.</doc>
+<status status="PASS" start="2024-12-02T10:25:00.077224" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-12-02T10:25:00.077224" elapsed="0.000000"/>
+</kw>
+<arg>${Address_file}</arg>
+<status status="PASS" start="2024-12-02T10:24:58.499855" elapsed="1.577369"/>
+</kw>
+<status status="PASS" start="2024-12-02T10:24:58.499855" elapsed="1.577369"/>
+</test>
+<status status="PASS" start="2024-12-02T10:24:47.110478" elapsed="12.966746"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="3" fail="0" skip="0" id="s1" name="Lab10">Lab10</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
